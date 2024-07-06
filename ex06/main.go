@@ -5,8 +5,18 @@ import (
 	"piscine"
 )
 
+const N = 6
+
 func main() {
-	result := []string{"a", "A", "1", "b", "B", "2", "c", "C", "3"}
-	piscine.SortWordArr(result)
-	fmt.Println(result)
+	a := make([]string, N)
+	a[0] = "a"
+	a[2] = "b"
+	a[4] = "c"
+	for _, v := range a {
+		fmt.Println(v)
+	}
+	fmt.Println("Size after compacting:", piscine.Compact(&a))
+	for _, v := range a {
+		fmt.Println(v)
+	}
 }

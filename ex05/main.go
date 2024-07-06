@@ -1,41 +1,20 @@
 package main
 
-import (
-	"fmt"
-)
-
-type DoorState int
+import "ft"
 
 const (
-	OPEN DoorState = iota
-	CLOSE
+	OPEN  = 1
+	CLOSE = 0
 )
 
 type Door struct {
-	state DoorState
+	state int
 }
 
 func PrintStr(s string) {
 	for _, r := range s {
-		fmt.Print(string(r))
+		ft.PrintRune(r)
 	}
-	fmt.Println()
-}
-
-func CloseDoor(ptrDoor *Door) bool {
-	PrintStr("Door Closing...")
-	ptrDoor.state = CLOSE
-	return true
-}
-
-func IsDoorOpen(door *Door) bool {
-	PrintStr("is the Door opened ?")
-	return door.state == OPEN
-}
-
-func IsDoorClose(ptrDoor *Door) bool {
-	PrintStr("is the Door closed ?")
-	return ptrDoor.state == CLOSE
 }
 
 func OpenDoor(ptrDoor *Door) bool {
@@ -44,13 +23,27 @@ func OpenDoor(ptrDoor *Door) bool {
 	return true
 }
 
+func CloseDoor(ptrDoor *Door) bool {
+	PrintStr("Door Closing...")
+	ptrDoor.state = CLOSE
+	return true
+}
+
+func IsDoorOpen(ptrDoor *Door) bool {
+	PrintStr("is the Door opened ?")
+	return ptrDoor.state == OPEN
+}
+
+func IsDoorClose(ptrDoor *Door) bool {
+	PrintStr("is the Door closed ?")
+	return true
+}
 func main() {
 	door := &Door{}
 	OpenDoor(door)
 	if IsDoorClose(door) {
 		OpenDoor(door)
-	}
-	if IsDoorOpen(door) {
+	} else if IsDoorOpen(door) {
 		CloseDoor(door)
 	}
 	if door.state == OPEN {
